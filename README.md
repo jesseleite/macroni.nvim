@@ -1,4 +1,4 @@
-# Macroni
+# Macroni.nvim
 
 Save your macros for future use in Neovim! 🤌
 
