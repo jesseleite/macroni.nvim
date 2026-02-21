@@ -30,10 +30,10 @@ A: Because then you have to deal with escaping termcodes, quotes, etc. yourself.
 
     ```lua
     {
-      'jesseleite/macroni.nvim',
+      "jesseleite/macroni.nvim",
       lazy = false,
       opts = {
-        -- All of your `setup(opts)` and saved macros will go here
+        -- All of your `setup(opts)` and saved macros will go here when using lazy.nvim
       },
     }
     ```
@@ -41,8 +41,8 @@ A: Because then you have to deal with escaping termcodes, quotes, etc. yourself.
 2. If you're using [Telescope](https://github.com/nvim-telescope/telescope.nvim), don't forget to map Macroni's fuzzy picker:
 
     ```lua
-    vim.keymap.set({'n', 'v'}, '<Leader>m', function ()
-      require('telescope').extensions.macroni.saved_macros()
+    vim.keymap.set({"n", "v"}, "<Leader>m", function ()
+      require("telescope").extensions.macroni.saved_macros()
     end)
     ```
 
@@ -73,9 +73,9 @@ That said, don't be afraid to bypass Macroni's config and paste them directly in
 To save macros to your Macroni config, simply add a `macros` table within your `setup(opts)`:
 
 ```lua
-require('macroni').setup {
+require("macroni").setup {
   macros = {
-    make_todo_list_item = '^i-<Space>[<Space>]<Space><Esc>',
+    make_todo_list_item = "^i-<Space>[<Space>]<Space><Esc>",
   },
 }
 ```
@@ -83,17 +83,17 @@ require('macroni').setup {
 If you wish to define a `keymap` for a saved macro, you may use table syntax:
 
 ```lua
-require('macroni').setup {
+require("macroni").setup {
   macros = {
     make_todo_list_item = {
-      macro = '^i-<Space>[<Space>]<Space>',
-      keymap = '<Leader>t',
+      macro = "^i-<Space>[<Space>]<Space>",
+      keymap = "<Leader>t",
     },
   },
 }
 ```
 
-By default, macro keymaps are mapped to both normal and visual modes (`{'n', 'v'}`), so that macros can be played back over multiline selections.
+By default, macro keymaps are mapped to both normal and visual modes (`{"n", "v"}`), so that macros can be played back over multiline selections.
 
 ### Playing Saved Macros
 
@@ -106,13 +106,13 @@ On top of your configured keymaps, all configured macros will be automatically a
 For more advanced keymap control, you may provide optional `desc` and `mode` keys, which will be passed to `vim.keymap.set` under the hood:
 
 ```lua
-require('macroni').setup {
+require("macroni").setup {
   macros = {
     make_todo_list_item = {
-      macro = '^i-<Space>[<Space>]<Space>',
-      keymap = '<Leader>t',
-      mode = { 'n', 'v' }, -- By default, macros will be mapped to both normal & visual modes
-      desc = 'Make a markdown list item!', -- Description for whichkey or similar
+      macro = "^i-<Space>[<Space>]<Space>",
+      keymap = "<Leader>t",
+      mode = { "n", "v" }, -- By default, macros will be mapped to both normal & visual modes
+      desc = "Make a markdown list item!", -- Description for whichkey or similar
     },
   },
 }
@@ -123,7 +123,7 @@ require('macroni').setup {
 By default, macroni will replace termcodes and escape quotes when [yanking](#yanking-macros), so that you can easily paste as a lua string. If you wish to extend the list of escaped characters, you may add the following configuration:
 
 ```lua
-require('macroni').setup {
+require("macroni").setup {
   yank = {
     escape_characters = { '"', "'" }, -- By default, single and double quote are escaped
   },
@@ -135,7 +135,7 @@ require('macroni').setup {
 If you want to save a [yanked macro](#yanking-macros) directly into your own keymap, simply paste it in:
 
 ```lua
-vim.keymap.set('n', '<Leader>t', '^i-<Space>[<Space>]<Space><Esc>', { remap = true })
+vim.keymap.set("n", "<Leader>t", "^i-<Space>[<Space>]<Space><Esc>", { remap = true })
 ```
 
 _Note: It is recommended that you set the `remap = true` option, to ensure that your macro is run more accurately as if you had manually run it yourself!_
@@ -146,7 +146,7 @@ You can also use macroni's `run()` helper to execute a [yanked macro](#yanking-m
 
 ```lua
 local make_todo_list_item = function ()
-  require('macroni').run('^i-<Space>[<Space>]<Space><Esc>')
+  require("macroni").run("^i-<Space>[<Space>]<Space><Esc>")
 end
 ```
 
