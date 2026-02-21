@@ -26,17 +26,11 @@ A: Because then you have to deal with escaping termcodes, quotes, etc. yourself.
 
 1. Install using your favourite package manager:
 
-    **Using [packer.nvim](https://github.com/wbthomason/packer.nvim):**
-
-    ```lua
-    use { 'jesseleite/nvim-macroni' }
-    ```
-
     **Using [lazy.nvim](https://github.com/folke/lazy.nvim):**
 
     ```lua
     {
-      'jesseleite/nvim-macroni',
+      'jesseleite/macroni.nvim',
       lazy = false,
       opts = {
         -- All of your `setup(opts)` and saved macros will go here
